@@ -2,7 +2,6 @@ extends KinematicBody
 class_name Player
 
 onready var camera : Camera = $Camera
-onready var right_arm : Spatial = $Body/RightArm
 
 export var move_speed := 1250.0
 export var gravity := 75.0
@@ -17,10 +16,6 @@ var current_jump_force := 0.0
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
-
-func _process(delta: float) -> void:
-	right_arm.rotation_degrees.x = -camera.rotation_degrees.x - 90.0
 
 
 func _physics_process(delta: float) -> void:

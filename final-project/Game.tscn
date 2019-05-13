@@ -19,6 +19,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.42146, 0 )
 move_speed = 25.0
 
 [node name="Floor" type="MeshInstance" parent="."]
+editor/display_folded = true
 transform = Transform( 61.5615, 0, 0, 0, 1, 0, 0, 0, 37.9698, 0, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = null

@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/actors/lambert1.material" type="Material" id=2]
 [ext_resource path="res://player/PlayerCamera.gd" type="Script" id=3]
-[ext_resource path="res://weapons/uzi/Uzi.tscn" type="PackedScene" id=4]
+[ext_resource path="res://player/PlayerWeapons.gd" type="Script" id=4]
+[ext_resource path="res://weapons/pistol/Pistol.tscn" type="PackedScene" id=5]
+[ext_resource path="res://weapons/uzi/Uzi.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Body1"
@@ -68,12 +70,13 @@ surfaces/0 = {
 extents = Vector3( 0.5, 0.5, 1 )
 
 [node name="Player" type="KinematicBody"]
+transform = Transform( 0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0 )
 collision_layer = 2
 script = ExtResource( 1 )
 
 [node name="Body" type="Spatial" parent="."]
 editor/display_folded = true
-transform = Transform( -0.15, 0, -2.26494e-08, 0, 0.15, 0, 2.26494e-08, 0, -0.15, 0, 0, 0 )
+transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 0 )
 
 [node name="Body1" type="MeshInstance" parent="Body"]
 mesh = SubResource( 1 )
@@ -97,7 +100,7 @@ mesh = SubResource( 4 )
 material/0 = ExtResource( 2 )
 
 [node name="Head" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.20113, -0.198062 )
+transform = Transform( 6.66667, 0, 0, 0, 6.66667, 0, 0, 0, 6.66667, 0, 13.8696, -1.08965 )
 current = true
 fov = 90.0
 script = ExtResource( 3 )
@@ -107,11 +110,22 @@ max_pitch = 60.0
 enabled = true
 cast_to = Vector3( 0, 0, -75 )
 
-[node name="WeaponSlot" type="Spatial" parent="Head"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.78, -0.481, -0.078 )
+[node name="Weapons" type="Spatial" parent="Head"]
+transform = Transform( 0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.78, -0.481, -0.078 )
+script = ExtResource( 4 )
 
-[node name="Uzi" parent="Head/WeaponSlot" instance=ExtResource( 4 )]
-transform = Transform( 0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 4.49419e-05, -4.17233e-06, 7.80225e-05 )
+[node name="Held" type="Spatial" parent="Head/Weapons"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="Pistol" parent="Head/Weapons/Held" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="Available" type="Spatial" parent="Head/Weapons"]
+visible = false
+
+[node name="Uzi" parent="Head/Weapons/Available" instance=ExtResource( 6 )]
+
+[node name="Tween" type="Tween" parent="Head/Weapons"]
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0 )

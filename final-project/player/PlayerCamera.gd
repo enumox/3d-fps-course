@@ -1,16 +1,17 @@
 extends Camera
 
 onready var aim : RayCast = $Aim
-onready var weapon_slot : Spatial = $WeaponSlot
+onready var weapons : Spatial = $Weapons
 
 export var mouse_sensitivity := 0.5
 export var max_pitch := 45.0
 
 var pitch := 0
+var selected_weapon_index := 0
+
 
 func _ready() -> void:
-	if weapon_slot.get_child_count() > 0:
-		weapon_slot.get_child(0).initialize(aim)
+	weapons.initialize(aim)
 
 
 func _input(event: InputEvent) -> void:

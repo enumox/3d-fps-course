@@ -3,7 +3,7 @@ class_name Player
 
 onready var head : Camera = $Head
 
-export var move_speed := 1250.0
+export var move_speed := 30.0
 export var gravity := 75.0
 export var jump_force := 20.0
 export var acceleration := 5.0

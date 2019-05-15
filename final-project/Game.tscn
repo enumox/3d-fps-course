@@ -15,8 +15,7 @@ points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1,
 [node name="Game" type="Node"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.42146, 0 )
-move_speed = 25.0
+transform = Transform( 0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 2, 0 )
 
 [node name="Floor" type="MeshInstance" parent="."]
 editor/display_folded = true
@@ -31,6 +30,7 @@ editor/display_folded = true
 shape = SubResource( 2 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
@@ -49,6 +49,7 @@ margin_bottom = -0.5
 rect_rotation = 45.0
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 9 )
 mesh = SubResource( 3 )
 material/0 = null
@@ -59,6 +60,7 @@ material/0 = null
 shape = SubResource( 4 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="."]
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 2, 6 )
 mesh = SubResource( 3 )
 material/0 = null

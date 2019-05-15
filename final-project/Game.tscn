@@ -44,8 +44,9 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -5.5
 margin_top = -5.5
-margin_right = 5.5
-margin_bottom = 5.5
+margin_right = -0.5
+margin_bottom = -0.5
+rect_rotation = 45.0
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 9 )

@@ -6,6 +6,8 @@ signal collider_hit(collider, point)
 onready var timer : Timer = $Timer
 onready var animation_player : AnimationPlayer = $AnimationPlayer
 
+const PARTICLE_EFFECT := preload("res://weapons/BulletHitParticle.tscn")
+
 export var fire_rate := 5
 export var clip_size := 10
 export var ammo := 50
@@ -35,6 +37,11 @@ func _shoot():
 	current_clip_ammo -= 1
 	if aim.is_colliding():
 		emit_signal("collider_hit", aim.get_collider(), aim.get_collision_point())
+		var particle = PARTICLE_EFFECT.instance()
+		add_child(particle)
+		particle.set_as_toplevel(true)
+		particle.global_transform.origin = aim.get_collision_point()
+		particle.emitting = true
 
 
 func _reload() -> void:

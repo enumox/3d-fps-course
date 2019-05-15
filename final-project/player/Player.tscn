@@ -64,13 +64,14 @@ surfaces/0 = {
 "vertex_count": 79
 }
 
-[sub_resource type="BoxShape" id=6]
+[sub_resource type="BoxShape" id=5]
 extents = Vector3( 0.5, 1.09245, 1 )
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
 
 [node name="Body" type="Spatial" parent="."]
+editor/display_folded = true
 transform = Transform( -0.15, 0, -2.26494e-08, 0, 0.15, 0, 2.26494e-08, 0, -0.15, 0, 0, 0 )
 
 [node name="Body1" type="MeshInstance" parent="Body"]
@@ -94,20 +95,24 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -11, 0 )
 mesh = SubResource( 4 )
 material/0 = ExtResource( 2 )
 
-[node name="Camera" type="Camera" parent="."]
+[node name="Head" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.20113, -0.198062 )
 current = true
 fov = 90.0
 script = ExtResource( 3 )
 max_pitch = 60.0
 
-[node name="WeaponSlot" type="Spatial" parent="Camera"]
+[node name="Aim" type="RayCast" parent="Head"]
+enabled = true
+cast_to = Vector3( 0, 0, -75 )
+
+[node name="WeaponSlot" type="Spatial" parent="Head"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.78, -0.481, -0.078 )
 
-[node name="Uzi" parent="Camera/WeaponSlot" instance=ExtResource( 4 )]
+[node name="Uzi" parent="Head/WeaponSlot" instance=ExtResource( 4 )]
 transform = Transform( 0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 4.49419e-05, -4.17233e-06, 7.80225e-05 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0 )
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 

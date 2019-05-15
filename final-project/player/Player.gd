@@ -1,7 +1,7 @@
 extends KinematicBody
 class_name Player
 
-onready var camera : Camera = $Camera
+onready var head : Camera = $Head
 
 export var move_speed := 1250.0
 export var gravity := 75.0
@@ -39,5 +39,5 @@ func _physics_process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		yaw = yaw - event.relative.x * camera.mouse_sensitivity
+		yaw = yaw - event.relative.x * head.mouse_sensitivity
 		rotation.y = deg2rad(yaw)

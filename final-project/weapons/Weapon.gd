@@ -12,12 +12,15 @@ export var fire_rate := 5
 export var clip_size := 10
 export var ammo := 50
 export(int, "Primary", "Secondary") var slot : int
+export var ammo_type : Resource
 
 var current_clip_ammo := clip_size
 var aim : RayCast
 var held := false setget set_held
 
+
 func _ready() -> void:
+	assert ammo_type
 	timer.wait_time = 1.0 / fire_rate
 	connect("collider_hit", self, "_on_collider_hit")
 	self.held = false
@@ -65,6 +68,7 @@ func _on_collider_hit(collider: Object, point: Vector3) -> void:
 func initialize(_aim: RayCast) -> void:
 	aim = _aim
 	self.held = true
+
 
 func set_held(value: bool) -> void:
 	held = value
